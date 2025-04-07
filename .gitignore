@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+SatSOT
+training_dataset
+data
+pretrained_models
+logs
+
 # C extensions
 *.so
 

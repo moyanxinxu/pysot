@@ -65,11 +65,8 @@ TRAIN:
             step: 1
 
 DATASET:
-    NAMES: 
-    - 'VID'
-    - 'YOUTUBEBB'
+    NAMES:
     - 'COCO'
-    - 'DET'
 
     TEMPLATE:
         SHIFT: 4

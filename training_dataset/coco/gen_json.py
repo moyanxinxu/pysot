@@ -1,9 +1,9 @@
-from pycocotools.coco import COCO
-from os.path import join
 import json
+from os.path import join
 
+from training_dataset.coco.pycocotools.coco import COCO
 
-dataDir = '.'
+dataDir = '/root/pysot/training_dataset/coco'
 for dataType in ['val2017', 'train2017']:
     dataset = dict()
     annFile = '{}/annotations/instances_{}.json'.format(dataDir,dataType)
@@ -15,9 +15,9 @@ for dataType in ['val2017', 'train2017']:
         annIds = coco.getAnnIds(imgIds=img['id'], iscrowd=None)
         anns = coco.loadAnns(annIds)
         video_crop_base_path = join(dataType, img['file_name'].split('/')[-1].split('.')[0])
-        
+
         if len(anns) > 0:
-            dataset[video_crop_base_path] = dict()        
+            dataset[video_crop_base_path] = dict()
 
         for trackid, ann in enumerate(anns):
             rect = ann['bbox']
@@ -28,6 +28,6 @@ for dataType in ['val2017', 'train2017']:
             dataset[video_crop_base_path]['{:02d}'.format(trackid)] = {'000000': bbox}
 
     print('save json (dataset), please wait 20 seconds~')
-    json.dump(dataset, open('{}.json'.format(dataType), 'w'), indent=4, sort_keys=True)
+    json.dump(dataset, open('/root/pysot/training_dataset/coco/{}.json'.format(dataType), 'w'), indent=4, sort_keys=True)
     print('done!')
 

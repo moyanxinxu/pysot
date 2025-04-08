@@ -24,9 +24,9 @@ from toolkit.utils.region import vot_overlap, vot_float2str
 parser = argparse.ArgumentParser(description='siamrpn tracking')
 parser.add_argument('--dataset', type=str,
         help='datasets')
-parser.add_argument('--config', default='', type=str,
+parser.add_argument('--config', default='/root/pysot/experiments/siamrpn_r50_l234_dwxcorr_8gpu/config.yaml', type=str,
         help='config file')
-parser.add_argument('--snapshot', default='', type=str,
+parser.add_argument('--snapshot', default='/root/pysot/snapshot/checkpoint_e20.pth', type=str,
         help='snapshot of models to eval')
 parser.add_argument('--video', default='', type=str,
         help='eval one special video')

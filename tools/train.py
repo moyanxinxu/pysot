@@ -39,8 +39,8 @@ parser.add_argument('--cfg', type=str, default='config.yaml',
                     help='configuration of tracking')
 parser.add_argument('--seed', type=int, default=123456,
                     help='random seed')
-parser.add_argument('--local_rank', type=int, default=0,
-                    help='compulsory for pytorch launcer')
+parser.add_argument('--local-rank', type=int, default=0,
+                    help='compulsory for pytorch launcher')
 args = parser.parse_args()
 
 
@@ -60,6 +60,8 @@ def build_data_loader():
     train_dataset = TrkDataset()
     logger.info("build dataset done")
 
+    train_dataset.num = 1200
+    train_dataset.pick = train_dataset.pick[:train_dataset.num]
     train_sampler = None
     if get_world_size() > 1:
         train_sampler = DistributedSampler(train_dataset)

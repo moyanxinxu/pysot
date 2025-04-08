@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "DDP CoCo Train",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "torch.distributed.launch",
+            "args": [
+                "--nproc_per_node",
+                "1",
+                "/root/pysot/tools/train.py",
+                "--cfg",
+                "/root/pysot/experiments/siamrpn_r50_l234_dwxcorr_8gpu/config.yaml"
+            ],
+            "env": {
+                "NCCL_IB_DISABLE": "1"
+            },
+            "console": "integratedTerminal"
+        }
+    ]
+}

@@ -1,11 +1,13 @@
-from pycocotools.coco import COCO
-import cv2
-import numpy as np
-from os.path import join, isdir
-from os import mkdir, makedirs
-from concurrent import futures
 import sys
 import time
+from concurrent import futures
+from os import makedirs, mkdir
+from os.path import isdir, join
+
+import cv2
+import numpy as np
+
+from training_dataset.coco.pycocotools.coco import COCO
 
 
 # Print iterations progress (thanks StackOverflow)
@@ -36,7 +38,7 @@ def crop_hwc(image, bbox, out_sz, padding=(0, 0, 0)):
     c = -a * bbox[0]
     d = -b * bbox[1]
     mapping = np.array([[a, 0, c],
-                        [0, b, d]]).astype(np.float)
+                        [0, b, d]], dtype=np.float32)
     crop = cv2.warpAffine(image, mapping, (out_sz, out_sz), borderMode=cv2.BORDER_CONSTANT, borderValue=padding)
     return crop
 
@@ -70,7 +72,7 @@ def crop_img(img, anns, set_crop_base_path, set_img_base_path, instanc_size=511)
     for trackid, ann in enumerate(anns):
         rect = ann['bbox']
         bbox = [rect[0], rect[1], rect[0] + rect[2], rect[1] + rect[3]]
-        if rect[2] <= 0 or rect[3] <=0:
+        if rect[2] <= 0 or rect[3] <= 0:
             continue
         z, x = crop_like_SiamFC(im, bbox, instanc_size=instanc_size, padding=avg_chans)
         cv2.imwrite(join(frame_crop_base_path, '{:06d}.{:02d}.z.jpg'.format(0, trackid)), z)
@@ -78,8 +80,8 @@ def crop_img(img, anns, set_crop_base_path, set_img_base_path, instanc_size=511)
 
 
 def main(instanc_size=511, num_threads=12):
-    dataDir = '.'
-    crop_path = './crop{:d}'.format(instanc_size)
+    dataDir = '/root/pysot/training_dataset/coco'
+    crop_path = '/root/pysot/training_dataset/coco/crop{:d}'.format(instanc_size)
     if not isdir(crop_path): mkdir(crop_path)
 
     for dataType in ['val2017', 'train2017']:
@@ -101,7 +103,6 @@ def main(instanc_size=511, num_threads=12):
 
 if __name__ == '__main__':
     since = time.time()
-    main(int(sys.argv[1]), int(sys.argv[2]))
+    main(511, 12)
     time_elapsed = time.time() - since
-    print('Total complete in {:.0f}m {:.0f}s'.format(
-        time_elapsed // 60, time_elapsed % 60))
+    print('Total complete in {:.0f}m {:.0f}s'.format(time_elapsed // 60, time_elapsed % 60))

@@ -103,7 +103,7 @@ class SubDataset(object):
     def get_image_anno(self, video, track, frame):
         frame = "{:06d}".format(frame)
         image_path = os.path.join(self.root, video,
-                                  self.path_format.format(frame, track, 'x'))
+                                  self.path_format.format(frame, f"{int(track):02d}", 'x'))
         image_anno = self.labels[video][track][frame]
         return image_path, image_anno
 
@@ -248,7 +248,6 @@ class TrkDataset(Dataset):
         # get image
         template_image = cv2.imread(template[0])
         search_image = cv2.imread(search[0])
-
         # get bounding box
         template_box = self._get_bbox(template_image, template[1])
         search_box = self._get_bbox(search_image, search[1])

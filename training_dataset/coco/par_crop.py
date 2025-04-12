@@ -6,6 +6,7 @@ from os.path import isdir, join
 
 import cv2
 import numpy as np
+from tqdm import tqdm
 
 from training_dataset.coco.pycocotools.coco import COCO
 
@@ -95,7 +96,7 @@ def main(instanc_size=511, num_threads=12):
             fs = [executor.submit(crop_img, coco.loadImgs(id)[0],
                                   coco.loadAnns(coco.getAnnIds(imgIds=id, iscrowd=None)),
                                   set_crop_base_path, set_img_base_path, instanc_size) for id in coco.imgs]
-            for i, f in enumerate(futures.as_completed(fs)):
+            for i, f in tqdm(enumerate(futures.as_completed(fs)), total=n_imgs):
                 # Write progress to error so that it can be seen
                 printProgress(i, n_imgs, prefix=dataType, suffix='Done ', barLength=40)
     print('done')

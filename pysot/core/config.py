@@ -135,7 +135,7 @@ __C.DATASET.NEG = 0.2
 # improve tracking performance for otb100
 __C.DATASET.GRAY = 0.0
 
-__C.DATASET.NAMES = ('VID', 'COCO', 'DET', 'YOUTUBEBB')
+__C.DATASET.NAMES = ('VID', 'COCO', 'DET', 'YOUTUBEBB', 'SatSot')
 
 __C.DATASET.VID = CN()
 __C.DATASET.VID.ROOT = 'training_dataset/vid/crop511'
@@ -154,6 +154,12 @@ __C.DATASET.COCO.ROOT = 'training_dataset/coco/crop511'
 __C.DATASET.COCO.ANNO = 'training_dataset/coco/train2017.json'
 __C.DATASET.COCO.FRAME_RANGE = 1
 __C.DATASET.COCO.NUM_USE = -1
+
+__C.DATASET.SatSot = CN()
+__C.DATASET.SatSot.ROOT = '/root/pysot/training_dataset/satsot/crop511'
+__C.DATASET.SatSot.ANNO = '/root/pysot/training_dataset/satsot/SatSOT.json'
+__C.DATASET.SatSot.FRAME_RANGE = 1
+__C.DATASET.SatSot.NUM_USE = -1
 
 __C.DATASET.DET = CN()
 __C.DATASET.DET.ROOT = 'training_dataset/det/crop511'

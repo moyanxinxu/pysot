@@ -60,8 +60,9 @@ def build_data_loader():
     train_dataset = TrkDataset()
     logger.info("build dataset done")
 
-    train_dataset.num = 1200
+    train_dataset.num = 12000000 # 得让他足够多的数据
     train_dataset.pick = train_dataset.pick[:train_dataset.num]
+    logger.info(f"Number of samples picked: {len(train_dataset.pick)}")
     train_sampler = None
     if get_world_size() > 1:
         train_sampler = DistributedSampler(train_dataset)

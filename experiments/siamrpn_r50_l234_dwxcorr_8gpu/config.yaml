@@ -43,7 +43,7 @@ TRACK:
     CONTEXT_AMOUNT: 0.5
 
 TRAIN:
-    EPOCH: 20
+    EPOCH: 40
     START_EPOCH: 0
     BATCH_SIZE: 28
     BASE_LR: 0.005
@@ -66,7 +66,8 @@ TRAIN:
 
 DATASET:
     NAMES:
-    - 'COCO'
+    # - 'COCO'
+    - 'SatSot'
 
     TEMPLATE:
         SHIFT: 4

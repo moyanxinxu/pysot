@@ -19,7 +19,7 @@ torch.set_num_threads(1)
 
 parser = argparse.ArgumentParser(description='tracking demo')
 parser.add_argument('--config', type=str, help='config file', default='/root/pysot/experiments/siamrpn_r50_l234_dwxcorr_8gpu/config.yaml')
-parser.add_argument('--snapshot', type=str, help='model name', default='/root/pysot/snapshot/checkpoint_e20.pth')
+parser.add_argument('--snapshot', type=str, help='model name', default='/root/pysot/snapshot/checkpoint_e40.pth')
 parser.add_argument('--video_name', default='/root/pysot/demo/bag.avi', type=str, help='videos or image files')
 args = parser.parse_args()
 

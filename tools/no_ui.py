@@ -22,8 +22,8 @@ parser.add_argument('--config', type=str, help='config file', default='/root/pys
 parser.add_argument('--snapshot', type=str, help='model name', default='/root/pysot/snapshot/checkpoint_e40.pth')
 # parser.add_argument('--video_name', default='/root/pysot/demo/Mini61_2_vis.avi', type=str, help='videos or image files')
 # parser.add_argument('--init_rect', type=str, help='initial rectangle (x,y,w,h)', default='315,266,25,8')
-parser.add_argument('--video_name', default='/root/pysot/training_dataset/satsot/train/ship_03/img/', type=str, help='videos or image files')
-parser.add_argument('--init_rect', type=str, help='initial rectangle (x,y,w,h)', default='666,263,43,15')
+parser.add_argument('--video_name', default='/root/pysot/demo/bag.avi', type=str, help='videos or image files')
+parser.add_argument('--init_rect', type=str, help='initial rectangle (x,y,w,h)', default='300,130,100,100')
 parser.add_argument('--output_dir', default='/root/pysot/output', type=str, help='directory to save result frames')
 args = parser.parse_args()
 

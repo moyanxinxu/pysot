@@ -9,6 +9,7 @@ training_dataset
 data
 pretrained_models
 logs
+snapshot
 
 # C extensions
 *.so
